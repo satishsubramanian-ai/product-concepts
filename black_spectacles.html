@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Black Spectacles — Platform Vision 2025</title>
+<style>
+  @font-face {
+    font-family: "Freight";
+    src: url("https://www.blackspectacles.com/hubfs/FreightDisp%20Pro%20Book.otf") format("opentype");
+    font-display: swap;
+    font-weight: 100;
+  }
+
+  :root {
+    --color-white: #FFFFFF;
+    --color-text: #333333;
+    --color-bg-light: #f8f8fd;
+    --color-bg-dark: #1a1a2e;
+    --color-accent: #2d2d6b;
+    --color-accent-mid: #3d3d8f;
+    --color-accent-light: #5a5aaa;
+    --color-border: #e2e2ef;
+    --color-muted: #6b6b8a;
+    --font-display: "Freight", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --radius-card: 8px;
+    --shadow-card: 0 2px 16px rgba(45, 45, 107, 0.10);
+    --shadow-card-hover: 0 6px 32px rgba(45, 45, 107, 0.18);
+    --max-width: 1160px;
+    --spacing-section: 96px;
+    --spacing-md: 48px;
+    --spacing-sm: 24px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-white);
+    line-height: 1.6;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    display: block;
+  }
+
+  /* ── NAV ── */
+  .kl-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 72px;
+  }
+
+  .kl-navbar__logo {
+    max-width: 140px;
+    max-height: 62px;
+    width: auto;
+  }
+
+  .kl-navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .kl-navbar__menu {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .kl-navbar__button {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .kl-navbar__button:hover {
+    color: var(--color-accent);
+  }
+
+  .product-concept-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .product-concept-badge::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #7ec8e3;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--color-accent) 0%, #16163a 60%, #0e0e24 100%);
+    color: var(--color-white);
+    padding: 100px 40px 96px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(90, 90, 170, 0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 20px;
+  }
+
+  .hero__headline {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(36px, 5.5vw, 72px);
+    line-height: 1.1;
+    color: var(--color-white);
+    max-width: 860px;
+    margin: 0 auto 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__headline em {
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .hero__description {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.72);
+    max-width: 640px;
+    margin: 0 auto 44px;
+    line-height: 1.7;
+  }
+
+  .hero__cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--color-white);
+    color: var(--color-accent);
+    padding: 14px 32px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-bg-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    padding: 14px 32px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.7);
+    color: var(--color-white);
+  }
+
+  /* ── CONTENT WRAPPER ── */
+  .content-wrapper {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--color-bg-light);
+    border-bottom: 1px solid var(--color-border);
+    padding: 32px 40px;
+  }
+
+  .stats-bar__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-item__number {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 40px;
+    color: var(--color-accent);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-item__label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--color-border);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* ── FEATURE SECTIONS ── */
+  .feature-section {
+    padding: var(--spacing-section) 40px;
+  }
+
+  .feature-section:nth-child(even) {
+    background: var(--color-bg-light);
+  }
+
+  .feature-section__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .feature-section__inner.reverse {
+    direction: rtl;
+  }
+
+  .feature-section__inner.reverse > * {
+    direction: ltr;
+  }
+
+  .feature-section__content {}
+
+  .feature-section__number {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 72px;
+    color: var(--color-border);
+    line-height: 1;
+    margin-bottom: -12px;
+    display: block;
+  }
+
+  .feature-section__title {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-section__body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  .feature-stat-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-card);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .feature-section:nth-child(even) .feature-stat-card {
+    background: var(--color-white);
+  }
+
+  .feature-stat-card__value {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 36px;
+    color: var(--color-accent);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .feature-stat-card__desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .feature-stat-card__desc strong {
+    display: block;
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  /* ── VISUAL PANEL ── */
+  .feature-panel {
+    background: linear-gradient(145deg, var(--color-accent) 0%, var(--color-accent-mid) 100%);
+    border-radius: 12px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .feature-panel::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .feature-panel::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .feature-panel--green {
+    background: linear-gradient(145deg, #1a3a2a 0%, #2d5a42 100%);
+  }
+
+  .feature-panel--warm {
+    background: linear-gradient(145deg, #2a1f3a 0%, #4a3560 100%);
+  }
+
+  .feature-panel__icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-panel__tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-panel__quote {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 22px;
+    color: var(--color-white);
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-panel__metrics {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-panel__metric {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .feature-panel__metric-value {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 28px;
+    color: var(--color-white);
+    display: block;
+    line-height: 1;
+  }
+
+  .feature-panel__metric-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    display: block;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── UI MOCKUP ELEMENTS ── */
+  .ui-mockup {
+    background: var(--color-white);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .ui-mockup__bar {
+    background: var(--color-bg-light);
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ui-mockup__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .ui-mockup__dot:first-child { background: #ff6b6b; }
+  .ui-mockup__dot:nth-child(2) { background: #ffd166; }
+  .ui-mockup__dot:nth-child(3) { background: #06d6a0; }
+
+  .ui-mockup__content {
+    padding: 24px;
+  }
+
+  .ui-progress-item {
+    margin-bottom: 20px;
+  }
+
+  .ui-progress-item__header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+
+  .ui-progress-item__pct {
+    color: var(--color-accent-light);
+  }
+
+  .ui-progress-bar {
+    height: 6px;
+    background: var(--color-border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .ui-progress-bar__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+    border-radius: 3px;
+  }
+
+  .ui-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .ui-badge--green {
+    background: rgba(6, 214, 160, 0.12);
+    color: #059668;
+  }
+
+  .ui-badge--blue {
+    background: rgba(45, 45, 107, 0.1);
+    color: var(--color-accent);
+  }
+
+  .ui-badge--orange {
+    background: rgba(255, 153, 51, 0.12);
+    color: #c2660a;
+  }
+
+  .ui-insight-card {
+    background: linear-gradient(135deg, #f0f0fa, #e8e8f5);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--color-accent-light);
+  }
+
+  .ui-insight-card__label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-light);
+    margin-bottom: 6px;
+  }
+
+  .ui-insight-card__text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .ui-chat-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .ui-chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .ui-chat-bubble {
+    background: var(--color-bg-light);
+    border-radius: 0 8px 8px 8px;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .ui-chat-bubble--ai {
+    background: linear-gradient(135deg, #f0f0fa, #e8e8f5);
+    border-radius: 8px 0 8px 8px;
+  }
+
+  /* ── OUTCOMES SECTION ── */
+  .outcomes-section {
+    background: var(--color-accent);
+    padding: var(--spacing-section) 40px;
+    color: var(--color-white);
+  }
+
+  .outcomes-section__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .outcomes-section__header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .outcomes-section__eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .outcomes-section__title {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(32px, 4vw, 52px);
+    color: var(--color-white);
+    line-height: 1.15;
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .outcome-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+
+  .outcome-card:hover {
+    background: rgba(255,255,255,0.11);
+  }
+
+  .outcome-card__index {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 56px;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    margin-bottom: -4px;
+  }
+
+  .outcome-card__metric {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 48px;
+    color: var(--color-white);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .outcome-card__title {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .outcome-card__body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+  }
+
+  .outcome-card__tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* ── THESIS CALLOUT ── */
+  .thesis-callout {
+    padding: var(--spacing-section) 40px;
+    background: var(--color-white);
+  }
+
+  .thesis-callout__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .thesis-callout__label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .thesis-callout__heading {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(28px, 3vw, 40px);
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .thesis-callout__right {}
+
+  .thesis-callout__text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .thesis-callout__text:last-child {
+    margin-bottom: 0;
+  }
+
+  .thesis-highlight {
+    border-left: 3px solid var(--color-accent-light);
+    padding-left: 20px;
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 22px;
+    color: var(--color-accent);
+    line-height: 1.5;
+    margin: 32px 0;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 0;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #111122;
+    padding: 48px 40px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .site-footer__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .site-footer__logo-text {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 22px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.02em;
+  }
+
+  .site-footer__divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .site-footer__badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  .site-footer__credit {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .site-footer__credit a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: underline;
+  }
+
+  .site-footer__credit a:hover {
+    color: var(--color-white);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .kl-navbar {
+      padding: 0 20px;
+    }
+
+    .feature-section {
+      padding: 64px 24px;
+    }
+
+    .feature-section__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .feature-section__inner.reverse {
+      direction: ltr;
+    }
+
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .thesis-callout {
+      padding: 64px 24px;
+    }
+
+    .thesis-callout__inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .stats-bar__inner {
+      gap: 20px;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .hero {
+      padding: 64px 24px 72px;
+    }
+
+    .outcomes-section {
+      padding: 64px 24px;
+    }
+
+    .site-footer {
+      padding: 36px 24px;
+    }
+
+    .site-footer__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-footer__credit {
+      text-align: left;
+    }
+
+    .kl-navbar__menu {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<nav class="kl-navbar content-wrapper">
+  <a href="https://www.blackspectacles.com/en-us/">
+    <img
+      alt="Black Spectacles"
+      class="kl-navbar__logo"
+      src="https://www.blackspectacles.com/hubfs/small_logo.webp"
+      style="max-width: 140px; max-height: 62px;"
+      width="100%"
+    />
+  </a>
+
+  <div class="kl-navbar__right">
+    <ul class="kl-navbar__menu">
+      <li>
+        <a class="kl-navbar__button" href="#">
+          <span>Study Materials</span>
+        </a>
+      </li>
+      <li>
+        <a class="kl-navbar__button" href="#">
+          <span>Practice Exams</span>
+        </a>
+      </li>
+      <li>
+        <a class="kl-navbar__button" href="#">
+          <span>For Firms</span>
+        </a>
+      </li>
+    </ul>
+    <span class="product-concept-badge">Product Concept</span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <span class="hero__eyebrow">Black Spectacles — Platform Vision 2025</span>
+  <h1 class="hero__headline">
+    From exam prep tool to the<br/>
+    <em>career-long platform</em><br/>
+    every architect depends on
+  </h1>
+  <p class="hero__description">
+    Black Spectacles has already won licensure prep. The next chapter transforms that trust and domain expertise into an AI-powered platform that serves architects from their first ARE exam through every code lookup, specification, and career milestone that follows.
+  </p>
+  <div class="hero__cta-group">
+    <a href="#" class="btn-primary">Explore the Vision</a>
+    <a href="#" class="btn-ghost">See the Roadmap</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════ STATS BAR ══════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-bar__inner">
+    <div class="stat-item">
+      <span class="stat-item__number">80%</span>
+      <span class="stat-item__label">of Top US Architecture Firms</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-item__number">50k+</span>
+      <span class="stat-item__label">Active ARE Candidates</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-item__number">6</span>
+      <span class="stat-item__label">ARE 5.0 Divisions Covered</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-item__number">2–3×</span>
+      <span class="stat-item__label">Revenue Growth Target</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-item__number">2010</span>
+      <span class="stat-item__label">Founded by Marc Teer, FAIA</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ THESIS CALLOUT ══════════════════════════ -->
+<section class="thesis-callout">
+  <div class="thesis-callout__inner">
+    <div>
+      <span class="thesis-callout__label">The Strategic Bet</span>
+      <h2 class="thesis-callout__heading">Three bets. One unified platform.</h2>
+    </div>
+    <div class="thesis-callout__right">
+      <p class="thesis-callout__text">
+        Black Spectacles is the most trusted brand in architectural education — subscribed to by over 80% of the top US firms. But today, that trust expires the moment a candidate passes their last ARE division. The platform has a structural churn problem: its most loyal users graduate away from it.
+      </p>
+      <blockquote class="thesis-highlight">
+        "The same domain expertise that teaches the IBC for exam day can automate the code lookup on a live project. We are the only player positioned to build that bridge."
+      </blockquote>
+      <p class="thesis-callout__text">
+        The three strategic bets below address this directly — replacing static exam content with adaptive AI, expanding the enterprise value proposition from progress dashboards to operational productivity, and launching a CE and career layer that retains architects for life.
+      </p>
+    </div>
+  </div>
+</section>
+<hr class="section-divider" />
+
+<!-- ══════════════════════════ FEATURE 1: ADAPTIVE AI LEARNING ══════════════════════════ -->
+<section class="feature-section">
+  <div class="feature-section__inner">
+    <div class="feature-section__content">
+      <span class="section-label">Strategic Bet 01</span>
+      <span class="feature-section__number">01</span>
+      <h2 class="feature-section__title">Adaptive AI Learning & Exam Readiness Prediction</h2>
+      <p class="feature-section__body">
+        Today's Black Spectacles experience is structured but static — the same video lectures, the same flashcard decks, the same practice questions for every candidate regardless of their background or weak spots. AI-native startups are already training on NCARB content and Reddit study groups, ready to undercut on price. The antidote is an outcome-differentiated product: an intelligent tutor that diagnoses knowledge gaps after every practice session, dynamically reprioritizes study queues, and gives candidates a real-time pass-probability score that builds confidence and drives completion.
+      </p>
+      <p class="feature-section__body">
+        This is not a chatbot layered on top of existing content. It is a fundamental rearchitecting of how candidates interact with material — one that makes higher pass rates the measurable, defensible proof point that justifies the subscription premium and defeats any undifferentiated competitor.
+      </p>
+      <div class="feature-stat-card">
+        <span class="feature-stat-card__value">+23 pts</span>
+        <div class="feature-stat-card__desc">
+          <strong>Projected pass-rate lift</strong>
+          Industry research on adaptive learning in professional credentialing shows 18–28 point improvements in first-attempt pass rates versus static content.
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Mockup: Adaptive Learning Dashboard -->
+    <div>
+      <div class="ui-mockup">
+        <div class="ui-mockup__bar">
+          <div class="ui-mockup__dot"></div>
+          <div class="ui-mockup__dot"></div>
+          <div class="ui-mockup__dot"></div>
+          <span style="font-family: var(--font-body); font-size: 12px; color: var(--color-muted); margin-left: 8px;">Black Spectacles — Adaptive Study Dashboard</span>
+        </div>
+        <div class="ui-mockup__content">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <div>
+              <div style="font-family: var(--font-body); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: 4px;">PA — Practice Management</div>
+              <div style="font-family: var(--font-display); font-size: 28px; font-weight: 100; color: var(--color-accent);">Exam Readiness</div>
+            </div>
+            <div style="text-align: center; background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)); color: white; border-radius: 50%; width: 72px; height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <span style="font-family: var(--font-display); font-size: 26px; line-height: 1;">74</span>
+              <span style="font-family: var(--font-body); font-size: 9px; text-transform: uppercase; opacity: 0.8;">/ 100</span>
+            </div>
+          </div>
+
+          <div class="ui-insight-card">
+            <div class="ui-insight-card__label">🤖 AI Tutor Insight</div>
+            <div class="ui-insight-card__text">You've answered 68% of <strong>Project Cost Management</strong> questions incorrectly this week. Reprioritizing this before your scheduled exam on May 12 could increase your pass probability by 11 points.</div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <div style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 12px;">Division Progress</div>
+
+            <div class="ui-progress-item">
+              <div class="ui-progress-item__header">
+                <span>Project Planning &amp; Design <span class="ui-badge ui-badge--green">Strong</span></span>
+                <span class="ui-progress-item__pct">88%</span>
+              </div>
+              <div class="ui-progress-bar"><div class="ui-progress-bar__fill" style="width: 88%;"></div></div>
+            </div>
+
+            <div class="ui-progress-item">
+              <div class="ui-progress-item__header">
+                <span>Practice Management <span class="ui-badge ui-badge--orange">Focus Here</span></span>
+                <span class="ui-progress-item__pct">51%</span>
+              </div>
+              <div class="ui-progress-bar"><div class="ui-progress-bar__fill" style="width: 51%; background: linear-gradient(90deg, #c2660a, #f59e0b);"></div></div>
+            </div>
+
+            <div class="ui-progress-item">
+              <div class="ui-progress-item__header">
+                <span>Project Development &amp; Docs <span class="ui-badge ui-badge--blue">On Track</span></span>
+                <span class="ui-progress-item__pct">72%</span>
+              </div>
+              <div class="ui-progress-bar"><div class="ui-progress-bar__fill" style="width: 72%;"></div></div>
+            </div>
+          </div>
+
+          <div style="background: var(--color-bg-light); border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-family: var(--font-body); font-size: 13px; color: var(--color-text);">Next recommended session</span>
+            <span style="font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--color-accent);">Cost Management Quiz →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════ FEATURE 2: ENTERPRISE / OPERATIONS PLATFORM ══════════════════════════ -->
+<section class="feature-section">
+  <div class="feature-section__inner reverse">
+    <div class="feature-section__content">
+      <span class="section-label">Strategic Bet 02</span>
+      <span class="feature-section__number">02</span>
+      <h2 class="feature-section__title">The Architecture Operations Platform — Harvey AI for Firms</h2>
+      <p class="feature-section__body">
+        Black Spectacles sells to 80% of top firms, but the current enterprise product — a dashboard showing how employees track through ARE prep — solves a problem no principal or project manager loses sleep over. Exam prep is an HR perk, not an ops tool. That framing leaves an enormous, addressable problem unserved: the roughly 60% of an architect's day consumed by administrative overhead — code compliance lookups, specification writing, RFI drafting, permit documentation coordination.
+      </p>
+      <p class="feature-section__body">
+        No other player has the combination of architectural domain expertise, NCARB-approved credibility, and trusted relationships inside the top 100 firms that Black Spectacles possesses. This is the Harvey AI opportunity for architecture: an AI assistant trained on IBC, LEED, ADA standards, and project-specific context that makes every architect on the team 30–40% more productive on the work that currently can't be delegated.
+      </p>
+      <div class="feature-stat-card">
+        <span class="feature-stat-card__value">$2.1B</span>
+        <div class="feature-stat-card__desc">
+          <strong>Addressable AEC productivity market</strong>
+          Architecture firms spend an estimated $2.1B annually on hours dedicated to code research, specification writing, and document administration — work AI can compress by 40–60%.
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Mockup: AI Ops Assistant -->
+    <div>
+      <div class="ui-mockup">
+        <div class="ui-mockup__bar">
+          <div class="ui-mockup__dot"></div>
+          <div class="ui-mockup__dot"></div>
+          <div class="ui-mockup__dot"></div>
+          <span style="font-family: var(--font-body); font-size: 12px; color: var(--color-muted); margin-left: 8px;">Black Spectacles — Architectural AI Assistant</span>
+        </div>
+        <div class="ui-mockup__content">
+          <div style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border); display: flex; gap: 8px;">
+            <span class="ui-badge ui-badge--blue">IBC 2021</span>
+            <span class="ui-badge ui-badge--green">ADA / ABA</span>
+            <span class="ui-badge ui-badge--orange">LEED v4.1</span>
+            <span style="font-family: var(--font-body); font-size: 11px; color: var(--color-muted); align-self: center; margin-left: 4px;">+ Project Specs</span>
+          </div>
+
+          <div class="ui-chat-row">
+            <div class="ui-chat-avatar">🏗️</div>
+            <div class="ui-chat-bubble">
+              What's the maximum travel distance to an exit for an S-1 occupancy in a fully sprinklered building under IBC 2021, and does our open-plan warehouse layout on Level 2 meet it?
+            </div>
+          </div>
+
+          <div class="ui-chat-row" style="flex-direction: row-reverse;">
+            <div class="ui-chat-avatar" style="background: linear-gradient(135deg, #1a3a2a, #2d5a42);">✦</div>
+            <div class="ui-chat-bubble ui-chat-bubble--ai">
+              <strong style="color: var(--color-accent);">IBC 2021 §1017.2</strong> sets the maximum exit access travel distance for S-1 occupancy with sprinklers at <strong>400 ft</strong>.<br/><br/>
+              Based on your uploaded Level 2 floor plan, the farthest workstation cluster (Grid D7) measures approximately <strong>312 ft</strong> to the nearest exit stair — within compliance. However, the secondary receiving dock area (Grid A2) shows <strong>417 ft</strong> to Stair B. I'd recommend adding a door to Stair C or rerouting the egress path through the mezzanine.<br/><br/>
+              <span style="color: var(--color-accent-light); font-size: 12px;">📎 Generating Section 1017 compliance memo for permit submission...</span>
+            </div>
+          </div>
+
+          <div style="background: linear-gradient(135deg, #f0f0fa, #e8e8f5); border-radius: 8px; padding: 14px 16px; margin-top: 8px;">
+            <div style="font-family: var(--font-body); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent-light); margin-bottom: 8px;">Quick Actions</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: white; border: 1px solid var(--color-border); border-radius: 4px; padding: 6px 12px; font-family: var(--font-body); font-size: 12px; cursor: pointer; color: var(--color-text);">Draft RFI</span>
+              <span style="background: white; border: 1px solid var(--color-border); border-radius: 4px; padding: 6px 12px; font-family: var(--font-body); font-size: 12px; cursor: pointer; color: var(--color-text);">Export Memo</span>
+              <span style="background: white; border: 1px solid var(--color-border); border-radius: 4px; padding: 6px 12px; font-family: var(--font-body); font-size: 12px; cursor: pointer; color: var(--color-text);">Check ADA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════ FEATURE 3: CE + SPECTACULAR ══════════════════════════ -->
+<section class="feature-section">
+  <div class="feature-section__inner">
+    <div class="feature-section__content">
+      <span class="section-label">Strategic Bet 03</span>
+      <span class="feature-section__number">03</span>
+      <h2 class="feature-section__title">Continuing Education & Spectacular — Retaining Architects for Life</h2>
+      <p class="feature-section__body">
+        Every architect who passes the ARE is a churn event. Black Spectacles has built extraordinary trust with them over months of intensive study — and then lets that relationship expire. Continuing education is the natural post-licensure layer: architects must earn 24 AIA HSW credits every two years, and the code topics they studied for the ARE are exactly the content they'll need CEUs on. A CE product anchored in Black Spectacles' existing curriculum requires minimal new content investment while creating a recurring revenue stream that compounds with the existing subscriber base.
+      </p>
+      <p class="feature-section__body">
+        Spectacular, the career platform, completes the loop — turning Black Spectacles from a study tool into the professional network and career infrastructure layer for the entire architecture profession. Firms that recruit, certify, and retain architects through a single platform become structurally dependent on Black Spectacles in a way that no exam-prep competitor can replicate.
+      </p>
+      <div class="feature-stat-card">
+        <span class="feature-stat-card__value">$640</span>
+        <div class="feature-stat-card__desc">
+          <strong>Estimated annual CE spend per licensed architect</strong>
+          With ~115,000 licensed architects in the US, CE alone represents a $73M+ addressable market — one Black Spectacles can enter with existing content and zero new firm relationships.
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Mockup: CE + Career Platform -->
+    <div>
+      <div class="feature-panel feature-panel--warm">
+        <span class="feature-panel__tag">CE + Spectacular Preview</span>
+        <div class="feature-panel__icon">🎓</div>
+        <div class="feature-panel__quote">
+          "I passed my last ARE six months ago. Black Spectacles is where I went for every exam — and now it's where I track my CEUs, find my next project role, and look up IBC on the job."
+        </div>
+        <div style="font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 12px; position: relative; z-index: 1;">— Emily R., Associate AIA, Seattle</div>
+        <div class="feature-panel__metrics">
+          <div class="feature-panel__metric">
+            <span class="feature-panel__metric-value">24</span>
+            <span class="feature-panel__metric-label">CEU Hours / Cycle</span>
+          </div>
+          <div class="feature-panel__metric">
+            <span class="feature-panel__metric-value">2yr</span>
+            <span class="feature-panel__metric-label">Renewal Cadence</span>
+          </div>
+          <div class="feature-panel__metric">
+            <span class="feature-panel__metric-value">115k</span>
+            <span class="feature-panel__metric-label">Licensed US Architects</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-card); padding: 20px 24px; box-shadow: var(--shadow-card);">
+        <div style="font-family: var(--font-body); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: 14px;">Spectacular — Career Platform Preview</div>
+        <div style="display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border);">
+          <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🏢</div>
+          <div style="flex: 1;">
+            <div style="font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--color-text);">Senior Project Architect</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-muted);">Gensler · Chicago, IL · $120–145k</div>
+          </div>
+          <span class="ui-badge ui-badge--green">Match 94%</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; padding: 12px 0;">
+          <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #1a3a2a, #2d5a42); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🌿</div>
+          <div style="flex: 1;">
+            <div style="font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--color-text);">Design Architect — Sustainable</div>
+            <div style="font-family: var(--font-body); font-size: 12px; color: var(--color-muted);">HOK · Washington, DC · $105–130k</div>
+          </div>
+          <span class="ui-badge ui-badge--blue">Match 87%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ 12-MONTH OUTCOMES ══════════════════════════ -->
+<section class="outcomes-section">
+  <div class="outcomes-section__inner">
+    <div class="outcomes-section__header">
+      <span class="outcomes-section__eyebrow">Execution Horizon</span>
+      <h2 class="outcomes-section__title">12-Month Outcomes</h2>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <span class="outcome-card__tag">Bet 01 — Adaptive AI</span>
+        <div class="outcome-card__metric">+28%</div>
+        <div class="outcome-card__title">Improvement in First-Attempt Pass Rates</div>
+        <p class="outcome-card__body">
+          AI-driven adaptive learning paths, gap diagnosis after every practice session, and a real-time exam readiness score ship within 6 months. Pass rate lift becomes the primary retention and word-of-mouth driver — making higher pass rates a defensible, measurable moat that price-competitive AI startups cannot replicate with undifferentiated content. Early cohorts targeting a minimum 23-point lift over the current static experience.
+        </p>
+      </div>
+
+      <div class="outcome-card">
+        <span class="outcome-card__tag">Bet 02 — Enterprise Ops</span>
+        <div class="outcome-card__metric">$3.2M</div>
+        <div class="outcome-card__title">ARR from Enterprise Operations Tier</div>
+        <p class="outcome-card__body">
+          Pilot the architectural AI assistant with 12 existing enterprise accounts in Q2. Target a $15k–$25k ACV enterprise seat model for the operations tier — separate from the existing exam prep subscription. By month 12, convert 40% of pilot accounts to paid and open broad sales motion. The architectural AI assistant's code compliance and specification automation capabilities deliver measurable billable-hour recovery that principals and PMs can quantify, unlocking a buying center exam prep never reached.
+        </p>
+      </div>
+
+      <div class="outcome-card">
+        <span class="outcome-card__tag">Bet 03 — CE & Spectacular</span>
+        <div class="outcome-card__metric">18k</div>
+        <div class="outcome-card__title">Post-Licensure Subscribers Retained</div>
+        <p class="outcome-card__body">
+          Launch AIA-approved continuing education modules built on existing ARE curriculum within 4 months — beginning with IBC, accessibility, and sustainability content already in the Black Spectacles library. Target 18,000 CE subscribers by month 12, converting architects who completed the ARE in the prior 24 months. Spectacular's career matching layer launches in beta with 10 firm partners in Q3, turning Black Spectacles into the platform architects stay on indefinitely — not just until they pass.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__logo-text">Black Spectacles</span>
+      <div class="site-footer__divider"></div>
+      <span class="site-footer__badge">Product Concept</span>
+    </div>
+    <div class="site-footer__credit">
+      Product concept by <strong style="color: rgba(255,255,255,0.7);">Satish Subramanian</strong><br />
+      <a href="mailto:satishdavesubramanian@gmail.com">satishdavesubramanian@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
