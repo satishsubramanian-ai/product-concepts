@@ -3,154 +3,1449 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Motive — Product Concept</title>
+<title>Vertical AI Product Factory — Motive Product Concept</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0f1117; color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; border-bottom: 1px solid #1e2535; }
-  nav .brand { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; letter-spacing: 0.02em; }
-  nav .label { font-size: 0.78rem; color: #f97316; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; background: #1e1a14; border: 1px solid #f97316; padding: 4px 12px; border-radius: 20px; }
-  .hero { max-width: 860px; margin: 80px auto 64px; padding: 0 24px; text-align: center; }
-  .hero h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; color: #f1f5f9; }
-  .hero h1 span { color: #f97316; }
-  .hero p { font-size: 1.1rem; color: #94a3b8; max-width: 680px; margin: 0 auto; }
-  .section { max-width: 1040px; margin: 0 auto 72px; padding: 0 24px; }
-  .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #f97316; margin-bottom: 12px; }
-  .section h2 { font-size: 1.7rem; font-weight: 700; margin-bottom: 32px; color: #f1f5f9; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .card { background: #151922; border: 1px solid #1e2535; border-radius: 12px; padding: 28px 24px; }
-  .card .card-icon { font-size: 1.6rem; margin-bottom: 14px; }
-  .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: #f1f5f9; }
-  .card p { font-size: 0.9rem; color: #94a3b8; margin-bottom: 16px; }
-  .card .stat { font-size: 1.5rem; font-weight: 800; color: #f97316; }
-  .card .stat-label { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
-  .outcomes { background: #151922; border: 1px solid #1e2535; border-radius: 12px; padding: 36px 32px; }
-  .outcomes h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; color: #f1f5f9; }
-  .outcomes ul { list-style: none; }
-  .outcomes ul li { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; font-size: 0.95rem; color: #cbd5e1; }
-  .outcomes ul li::before { content: "→"; color: #f97316; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-  .outcomes ul li strong { color: #f1f5f9; }
-  .divider { border: none; border-top: 1px solid #1e2535; margin: 0 24px 72px; }
-  footer { text-align: center; padding: 28px 24px; border-top: 1px solid #1e2535; font-size: 0.82rem; color: #475569; }
-  footer a { color: #f97316; text-decoration: none; }
-  @media (max-width: 600px) { nav { padding: 16px 20px; } .hero h1 { font-size: 1.8rem; } .section { margin-bottom: 48px; } }
+  :root {
+    --headerHeight: 63px;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-accent-cyan: #00b4ff;
+    --color-accent-blue: #005be2;
+    --color-accent-navy: #02154d;
+    --color-dark: #2e2e2e;
+    --color-darkest: #010101;
+    --color-bg-dark: #1b2736;
+    --color-gray-mid: #b3b3b3;
+    --color-bg-light: #f2f2f2;
+    --color-gray: #666;
+    --color-border: #e6e6e6;
+    --color-red: #ff0f00;
+    --color-text-primary: #101828;
+    --color-text-secondary: #667085;
+    --navigation-layout-direction: row;
+    --navigation-layout-wrap: wrap;
+    --navigation-layout-justify: flex-start;
+    --navigation-layout-align: center;
+    --font-primary: MaisonNeue, apple-system, Roboto, Arial, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-black);
+    height: var(--headerHeight);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 100%;
+    display: flex;
+    flex-direction: var(--navigation-layout-direction);
+    flex-wrap: var(--navigation-layout-wrap);
+    justify-content: space-between;
+    align-items: var(--navigation-layout-align);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-mark svg {
+    width: 18px;
+    height: 18px;
+    fill: #fff;
+  }
+
+  .nav-logo-wordmark {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 4px;
+  }
+
+  .product-concept-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,180,255,0.12);
+    border: 1px solid rgba(0,180,255,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-accent-cyan);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .product-concept-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent-cyan);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links li a {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    transition: color 0.2s ease;
+    letter-spacing: -0.005em;
+  }
+
+  .nav-links li a:hover {
+    color: var(--color-white);
+  }
+
+  .wp-block-motive-button {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(16,24,40,.05);
+    box-shadow: 0 1px 2px rgba(16,24,40,.05);
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: -.005em;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .wp-block-motive-button.gradient-btn {
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+    border: none;
+    border-radius: 160px;
+    color: #fff;
+  }
+
+  .wp-block-motive-button.gradient-btn a {
+    min-width: inherit;
+    padding: 10px 28px;
+    width: inherit;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .wp-block-motive-button.secondary-white-rounded {
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 48px;
+    color: #fff;
+  }
+
+  .wp-block-motive-button.secondary-white-rounded a {
+    min-width: inherit;
+    padding: 10px 28px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* ===== HERO ===== */
+  .hero-section {
+    background-color: var(--color-black);
+    background-image: radial-gradient(ellipse at 60% 0%, rgba(0,91,226,0.18) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(0,180,255,0.08) 0%, transparent 50%);
+    padding: 100px 32px 96px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,180,255,0.1);
+    border: 1px solid rgba(0,180,255,0.25);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-accent-cyan);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .hero-title .gradient-text {
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    letter-spacing: -0.005em;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats-bar {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ===== SECTION SHARED ===== */
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-label .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ===== FEATURE SECTIONS ===== */
+  .feature-section {
+    padding: 96px 32px;
+  }
+
+  .feature-section:nth-child(odd) {
+    background-color: var(--color-white);
+  }
+
+  .feature-section:nth-child(even) {
+    background-color: var(--color-bg-light);
+  }
+
+  .feature-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .feature-section-inner.reverse {
+    direction: rtl;
+  }
+
+  .feature-section-inner.reverse > * {
+    direction: ltr;
+  }
+
+  .feature-content {}
+
+  .feature-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .feature-label {
+    color: var(--color-accent-blue);
+  }
+
+  .feature-title {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .feature-description {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .feature-stat-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 1px 3px rgba(16,24,40,0.05), 0 4px 16px rgba(16,24,40,0.04);
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 340px;
+  }
+
+  .feature-stat-card.dark {
+    background: var(--color-text-primary);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  .feature-stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-image: linear-gradient(286deg, rgba(0,180,255,0.15) 0%, rgba(0,91,226,0.15) 100%);
+  }
+
+  .feature-stat-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .feature-stat-content {}
+
+  .feature-stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .feature-stat-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Feature Visual */
+  .feature-visual {
+    position: relative;
+  }
+
+  .feature-card-mockup {
+    background: var(--color-text-primary);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(16,24,40,0.15), 0 4px 20px rgba(16,24,40,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+  }
+
+  .mockup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .mockup-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .mockup-badge {
+    background: rgba(0,180,255,0.15);
+    border: 1px solid rgba(0,180,255,0.25);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-accent-cyan);
+  }
+
+  .mockup-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .mockup-row:last-child {
+    border-bottom: none;
+  }
+
+  .mockup-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mockup-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-accent-cyan);
+  }
+
+  .mockup-row-content {
+    flex: 1;
+  }
+
+  .mockup-row-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: -0.005em;
+  }
+
+  .mockup-row-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .mockup-bar-wrap {
+    width: 80px;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .mockup-bar {
+    height: 100%;
+    border-radius: 3px;
+    background-image: linear-gradient(90deg, #00b4ff, #005be2);
+  }
+
+  .mockup-score {
+    font-size: 13px;
+    font-weight: 700;
+    color: #00b4ff;
+    min-width: 32px;
+    text-align: right;
+  }
+
+  /* Progress ring mockup for Bet 2 */
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .mockup-metric-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .mockup-metric-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mockup-metric-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .mockup-metric-delta {
+    font-size: 11px;
+    font-weight: 700;
+    color: #22c55e;
+    margin-top: 6px;
+  }
+
+  .mockup-metric-delta.down {
+    color: #ef4444;
+  }
+
+  /* Pipeline mockup for Bet 3 */
+  .mockup-pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .pipeline-stage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pipeline-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    width: 90px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .pipeline-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .pipeline-fill {
+    height: 100%;
+    border-radius: 4px;
+    background-image: linear-gradient(90deg, #00b4ff, #005be2);
+  }
+
+  .pipeline-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    min-width: 24px;
+    text-align: right;
+  }
+
+  /* ===== OUTCOMES SECTION ===== */
+  .outcomes-section {
+    background-color: var(--color-text-primary);
+    padding: 96px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .outcomes-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,91,226,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .outcomes-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,180,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .outcomes-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .outcomes-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .outcomes-label {
+    color: var(--color-accent-cyan);
+  }
+
+  .outcomes-title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .outcomes-subtitle {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .outcomes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .outcome-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .outcome-item:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(0,180,255,0.2);
+  }
+
+  .outcome-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .outcome-content {}
+
+  .outcome-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+
+  .outcome-description {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  .outcome-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0,180,255,0.1);
+    border: 1px solid rgba(0,180,255,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-accent-cyan);
+    letter-spacing: 0.04em;
+    margin-top: 10px;
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: var(--color-black);
+    padding: 48px 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-logo-mark {
+    width: 28px;
+    height: 28px;
+    background-image: linear-gradient(286deg, #00b4ff 1.81%, #005be2 56.35%, #02154d 110.42%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-mark svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+  }
+
+  .footer-wordmark {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+  }
+
+  .footer-credit {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  .footer-credit a {
+    color: var(--color-accent-cyan);
+    font-weight: 500;
+  }
+
+  .footer-credit a:hover {
+    color: #fff;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+  }
+
+  .footer-social li a {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease;
+    text-transform: capitalize;
+  }
+
+  .footer-social li a:hover {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 28px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-disclaimer {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.6;
+  }
+
+  /* ===== DIVIDER ===== */
+  .section-divider {
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1023px) {
+    .feature-section-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .feature-section-inner.reverse {
+      direction: ltr;
+    }
+
+    .hero-stats-bar {
+      gap: 32px;
+    }
+
+    .hero-stat-divider {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .nav-links {
+      display: none;
+    }
+
+    .hero-section {
+      padding: 72px 20px 64px;
+    }
+
+    .feature-section {
+      padding: 64px 20px;
+    }
+
+    .outcomes-section {
+      padding: 64px 20px;
+    }
+
+    .site-footer {
+      padding: 40px 20px;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .outcome-item {
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .hero-stats-bar {
+      gap: 24px;
+    }
+
+    .wp-block-motive-button.gradient-btn a,
+    .wp-block-motive-button.secondary-white-rounded a {
+      padding: 12px 24px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <span class="brand">Motive</span>
-  <span class="label">Product Concept</span>
-</nav>
+<!-- ===== HEADER / NAV ===== -->
+<header class="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Main Navigation">
+    <div class="nav-left">
+      <a href="https://gomotive.com" class="nav-logo" aria-label="Motive Home">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 3L4 7.5v9L12 21l8-4.5v-9L12 3zm0 2.3l5.8 3.2v6.4L12 18.7l-5.8-3.2V8.5L12 5.3z"/>
+          </svg>
+        </div>
+        <span class="nav-wordmark">Motive</span>
+      </a>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <span class="product-concept-badge" aria-label="This is a product concept page">Product Concept</span>
+    </div>
 
-<section class="hero">
-  <h1>From Edge AI Infrastructure<br>to a <span>Vertical Product Platform</span></h1>
-  <p>Motive has world-class computer vision and edge AI at scale — but raw capability isn't a product. This concept outlines how to systematically translate AI R&D into commercially validated, vertical-specific products that justify a platform multiple at IPO.</p>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="#bet1">Vertical Factory</a></li>
+        <li><a href="#bet2">AI Translation</a></li>
+        <li><a href="#bet3">GTM Playbook</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+      </ul>
+      <span class="wp-block-motive-button gradient-btn">
+        <a href="#outcomes">View Roadmap</a>
+      </span>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section" role="main">
+  <div class="hero-inner">
+    <div class="hero-eyebrow" role="doc-subtitle">Safety &amp; AI Platform Strategy</div>
+
+    <h1 class="hero-title">
+      The <span class="gradient-text">Vertical AI Product Factory</span><br>
+      for the Physical Economy
+    </h1>
+
+    <p class="hero-description">
+      Motive has world-class computer vision and edge AI. The next growth lever isn't better models — it's a repeatable system for translating that AI firepower into commercially validated, vertical-specific products across waste, construction, and field services before Samsara plants a flag.
+    </p>
+
+    <div class="hero-cta-group">
+      <span class="wp-block-motive-button gradient-btn has-anchor-link has-full-width-on-mobile">
+        <a href="#bet1">Explore the Strategy</a>
+      </span>
+      <span class="wp-block-motive-button secondary-white-rounded has-anchor-link has-full-width-on-mobile">
+        <a href="#outcomes">12-Month Outcomes</a>
+      </span>
+    </div>
+
+    <div class="hero-stats-bar" role="region" aria-label="Key Metrics">
+      <div class="hero-stat">
+        <div class="hero-stat-number">$501M</div>
+        <div class="hero-stat-label">Current ARR</div>
+      </div>
+      <div class="hero-stat-divider" aria-hidden="true"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">1.3M</div>
+        <div class="hero-stat-label">Drivers on Platform</div>
+      </div>
+      <div class="hero-stat-divider" aria-hidden="true"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">3</div>
+        <div class="hero-stat-label">Target Verticals to Penetrate</div>
+      </div>
+      <div class="hero-stat-divider" aria-hidden="true"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">$150M</div>
+        <div class="hero-stat-label">Kleiner Perkins Round</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="section">
-  <div class="section-label">Strategic Bet 01</div>
-  <h2>The Vertical AI Product Factory</h2>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🏗️</div>
-      <h3>Repeatable Vertical Launch Playbook</h3>
-      <p>Waste services, construction, and field services are explicitly underpenetrated — but one-off vertical bets don't scale. This bet is a standardized discovery-to-launch framework: vertical workflow mapping, AI model scoping, and go-to-market templates that compress time-to-revenue for each new vertical.</p>
-      <div class="stat">3 verticals</div>
-      <div class="stat-label">targeted for structured entry in 12 months</div>
+<!-- ===== FEATURE SECTION 1: Vertical AI Product Factory ===== -->
+<section class="feature-section" id="bet1" aria-labelledby="bet1-title">
+  <div class="feature-section-inner">
+    <div class="feature-content">
+      <div class="feature-number" aria-hidden="true">1</div>
+      <div class="section-label feature-label">
+        <span class="dot" aria-hidden="true"></span>
+        Strategic Bet One
+      </div>
+      <h2 class="feature-title" id="bet1-title">Build a Repeatable Vertical AI Product Factory</h2>
+      <p class="feature-description">
+        Waste services, construction, and field services aren't just three markets — they're the proof-of-concept for a scalable playbook. Each vertical has distinct regulatory triggers, workflow pain points, and buyer personas that demand purpose-built AI models, not repackaged fleet telemetry. The goal isn't to ship three products; it's to build a discovery-to-launch machine that can spin up the fourth, fifth, and sixth vertical at IPO velocity.
+      </p>
+      <p class="feature-description">
+        By embedding vertical PMs alongside CV engineers during model definition — not after training — Motive can compress the feedback loop between "what the AI can see" and "what the operator will pay to know," turning R&amp;D spend into predictable ARR expansion.
+      </p>
+
+      <div class="feature-stat-card" role="complementary" aria-label="Key metric">
+        <div class="feature-stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#005be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div class="feature-stat-content">
+          <div class="feature-stat-value">3→8</div>
+          <div class="feature-stat-desc">Target verticals in 18 months, each with a validated model + pricing playbook</div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">🔬</div>
-      <h3>Vertical Workflow Intelligence Layer</h3>
-      <p>Generic fleet dashboards don't resonate with a waste fleet dispatcher or a construction site super. The factory produces vertical-specific AI models surfacing workflow-native signals — compaction cycle anomalies, grade equipment idle time, jobsite access violations — not just generic speeding alerts.</p>
-      <div class="stat">~40%</div>
-      <div class="stat-label">faster sales cycles when vertical fit is demonstrated at demo</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">📊</div>
-      <h3>Samsara Displacement Strategy</h3>
-      <p>Samsara is already making vertical moves — passenger detection, industry dashboards. Speed matters. The factory model lets Motive field a credible, deep vertical product before Samsara consolidates those beachheads, leveraging Motive's superior edge compute and existing 1.3M driver footprint as distribution.</p>
-      <div class="stat">1.3M</div>
-      <div class="stat-label">drivers — existing distribution advantage for vertical rollout</div>
+
+    <div class="feature-visual" aria-hidden="true">
+      <div class="feature-card-mockup">
+        <div class="mockup-header">
+          <span class="mockup-title">Vertical Launch Tracker</span>
+          <span class="mockup-badge">Live</span>
+        </div>
+
+        <div class="mockup-row">
+          <div class="mockup-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <div class="mockup-row-content">
+            <div class="mockup-row-label">Waste Services</div>
+            <div class="mockup-row-sub">Route deviation + overload detection</div>
+          </div>
+          <div class="mockup-bar-wrap">
+            <div class="mockup-bar" style="width:82%"></div>
+          </div>
+          <div class="mockup-score">82%</div>
+        </div>
+
+        <div class="mockup-row">
+          <div class="mockup-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="mockup-row-content">
+            <div class="mockup-row-label">Construction</div>
+            <div class="mockup-row-sub">Equipment proximity + OSHA alerts</div>
+          </div>
+          <div class="mockup-bar-wrap">
+            <div class="mockup-bar" style="width:65%"></div>
+          </div>
+          <div class="mockup-score">65%</div>
+        </div>
+
+        <div class="mockup-row">
+          <div class="mockup-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="mockup-row-content">
+            <div class="mockup-row-label">Field Services</div>
+            <div class="mockup-row-sub">Technician dispatch + dwell analytics</div>
+          </div>
+          <div class="mockup-bar-wrap">
+            <div class="mockup-bar" style="width:44%"></div>
+          </div>
+          <div class="mockup-score">44%</div>
+        </div>
+
+        <div class="mockup-row">
+          <div class="mockup-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="mockup-row-content">
+            <div class="mockup-row-label">Energy / Utilities</div>
+            <div class="mockup-row-sub">Next vertical — scoping in progress</div>
+          </div>
+          <div class="mockup-bar-wrap">
+            <div class="mockup-bar" style="width:12%"></div>
+          </div>
+          <div class="mockup-score" style="color: rgba(255,255,255,0.3)">Q3</div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="divider">
+<!-- ===== FEATURE SECTION 2: CV-to-Commercial Translation ===== -->
+<section class="feature-section" id="bet2" aria-labelledby="bet2-title">
+  <div class="feature-section-inner reverse">
+    <div class="feature-content">
+      <div class="feature-number" aria-hidden="true">2</div>
+      <div class="section-label feature-label">
+        <span class="dot" aria-hidden="true"></span>
+        Strategic Bet Two
+      </div>
+      <h2 class="feature-title" id="bet2-title">Close the CV-to-Commercial Product Translation Gap</h2>
+      <p class="feature-description">
+        Motive's AI team can detect distracted driving, hard braking, and near-miss events with industry-leading precision. But detection accuracy doesn't close deals — commercial outcome framing does. The gap isn't in the model; it's in translating what the model sees into an ROI narrative a fleet safety director will approve in budget season.
+      </p>
+      <p class="feature-description">
+        This means embedding product requirements directly into model design: defining acceptable false-positive rates by buyer persona, instrumenting AI outputs for audit trails that satisfy insurers, and creating "explainability layers" that let a non-technical dispatcher understand why an alert fired. That's the product work that converts R&amp;D into revenue.
+      </p>
 
-<div class="section">
-  <div class="section-label">Strategic Bet 02</div>
-  <h2>CV-to-Commercial Translation Engine</h2>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>AI Model Product Requirements Discipline</h3>
-      <p>Motive's AI team can detect hundreds of edge-case driver behaviors — but detection without commercial framing is a demo, not a product. This bet installs a formal Product Requirements process for AI models: for every CV capability, define the specific operator pain, quantify the cost avoided, and validate willingness-to-pay before engineering investment scales.</p>
-      <div class="stat">$501M</div>
-      <div class="stat-label">ARR base proving Motive sells outcomes, not features</div>
+      <div class="feature-stat-card" role="complementary" aria-label="Key metric">
+        <div class="feature-stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#005be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="feature-stat-content">
+          <div class="feature-stat-value">40%</div>
+          <div class="feature-stat-desc">Target reduction in insurance premiums cited in customer ROI cases — the #1 expansion trigger</div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">⚖️</div>
-      <h3>Engineering Trade-off Governance</h3>
-      <p>Model accuracy, inference latency, edge hardware constraints, and labeling costs create constant trade-offs. Without structured governance, AI teams optimize for technical elegance while the market wants "good enough, fast, and cheap." This bet creates a shared decision framework so product and AI leadership resolve trade-offs against commercial criteria, not just benchmarks.</p>
-      <div class="stat">&lt;200ms</div>
-      <div class="stat-label">target edge inference latency for real-time safety interventions</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">💰</div>
-      <h3>Willingness-to-Pay Validation Loops</h3>
-      <p>New AI product lines can't piggyback on fleet/ELD pricing intuition. Each new safety or AI capability needs early customer co-development with pricing signals validated before GA. Structured beta cohorts in construction and waste services — 50–100 fleets each — generate the commercial proof needed for confident IPO-era pricing.</p>
-      <div class="stat">50–100</div>
-      <div class="stat-label">design-partner fleets per vertical before GA pricing lock</div>
+
+    <div class="feature-visual" aria-hidden="true">
+      <div class="feature-card-mockup">
+        <div class="mockup-header">
+          <span class="mockup-title">AI Model ROI Dashboard</span>
+          <span class="mockup-badge">Beta</span>
+        </div>
+
+        <div class="mockup-grid">
+          <div class="mockup-metric-card">
+            <div class="mockup-metric-value">94.2%</div>
+            <div class="mockup-metric-label">Alert precision (driver distraction)</div>
+            <div class="mockup-metric-delta">↑ +3.1% vs last quarter</div>
+          </div>
+          <div class="mockup-metric-card">
+            <div class="mockup-metric-value">2.3%</div>
+            <div class="mockup-metric-label">False positive rate (insurer threshold)</div>
+            <div class="mockup-metric-delta">↓ −0.8% target met</div>
+          </div>
+          <div class="mockup-metric-card">
+            <div class="mockup-metric-value">$18K</div>
+            <div class="mockup-metric-label">Avg. annual savings per insured fleet</div>
+            <div class="mockup-metric-delta">↑ +12% YoY</div>
+          </div>
+          <div class="mockup-metric-card">
+            <div class="mockup-metric-value">67%</div>
+            <div class="mockup-metric-label">Dispatchers who acted on AI alert &lt;2 min</div>
+            <div class="mockup-metric-delta">↑ +22% post UX redesign</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="divider">
+<!-- ===== FEATURE SECTION 3: GTM Playbook ===== -->
+<section class="feature-section" id="bet3" aria-labelledby="bet3-title">
+  <div class="feature-section-inner">
+    <div class="feature-content">
+      <div class="feature-number" aria-hidden="true">3</div>
+      <div class="section-label feature-label">
+        <span class="dot" aria-hidden="true"></span>
+        Strategic Bet Three
+      </div>
+      <h2 class="feature-title" id="bet3-title">Own the GTM Playbook for Net-New AI Products</h2>
+      <p class="feature-description">
+        The existing Motive GTM motion — built around ELD compliance mandates and fleet tracking — doesn't translate to AI-native products with outcome-based pricing. New AI safety modules need a fundamentally different launch architecture: vertical-specific positioning, usage-based pricing tiers, sales enablement built around insurance ROI, and pilot-to-expansion playbooks designed for 60-day proof-of-value cycles.
+      </p>
+      <p class="feature-description">
+        Product must own this GTM motion at inception — not hand it off after launch. That means shipping pricing strategy alongside the product, writing the first competitive battlecards, and sitting in early sales calls to hear objections before they become churn signals. The Head of Product role carries explicit GTM ownership for exactly this reason.
+      </p>
 
-<div class="section">
-  <div class="section-label">Strategic Bet 03</div>
-  <h2>0-to-1 Product OS & GTM Readiness</h2>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🚀</div>
-      <h3>Standalone Product Launch Playbook</h3>
-      <p>Motive has never shipped a net-new standalone product line from 0-to-1 with a repeatable process. The existing GTM motion — built for ELD compliance sales — breaks down when selling AI-native safety products to construction ops leaders. This bet defines the full conception-to-launch process: problem validation, MVP scoping, alpha/beta gates, and GA readiness criteria.</p>
-      <div class="stat">0 → 1</div>
-      <div class="stat-label">new standalone AI product lines shipped via repeatable process</div>
+      <div class="feature-stat-card" role="complementary" aria-label="Key metric">
+        <div class="feature-stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#005be2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="feature-stat-content">
+          <div class="feature-stat-value">60 days</div>
+          <div class="feature-stat-desc">Target proof-of-value cycle per vertical pilot — the GTM design constraint that shapes every product decision</div>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-icon">📣</div>
-      <h3>AI Product GTM Ownership</h3>
-      <p>Product owns GTM here — pricing, positioning, and field enablement — because no existing playbook covers these new lines. This bet creates vertical-specific positioning frameworks, competitive battle cards against Samsara and niche players, and sales enablement assets purpose-built for AI product conversations, not ELD renewals.</p>
-      <div class="stat">~100K</div>
-      <div class="stat-label">customers — existing base for cross-sell of new AI product lines</div>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔗</div>
-      <h3>Influence-Driven Cross-Functional Model</h3>
-      <p>The matrixed org means product must win through quality of thinking, not org chart authority. This bet formalizes the influence model: weekly AI + Product + GTM syncs, shared OKRs across functions, and a product narrative compelling enough that engineering, sales, and marketing align without mandate — the only model that works at Motive's current structure.</p>
-      <div class="stat">3 functions</div>
-      <div class="stat-label">AI, GTM, and Engineering aligned under shared product OKRs</div>
+
+    <div class="feature-visual" aria-hidden="true">
+      <div class="feature-card-mockup">
+        <div class="mockup-header">
+          <span class="mockup-title">Vertical GTM Pipeline</span>
+          <span class="mockup-badge">Q2 Target</span>
+        </div>
+
+        <div class="mockup-pipeline">
+          <div class="pipeline-stage">
+            <div class="pipeline-label">Discovery</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:100%"></div>
+            </div>
+            <div class="pipeline-count">24</div>
+          </div>
+
+          <div class="pipeline-stage">
+            <div class="pipeline-label">Pilot Kick-off</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:75%"></div>
+            </div>
+            <div class="pipeline-count">18</div>
+          </div>
+
+          <div class="pipeline-stage">
+            <div class="pipeline-label">POV Active</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:50%"></div>
+            </div>
+            <div class="pipeline-count">12</div>
+          </div>
+
+          <div class="pipeline-stage">
+            <div class="pipeline-label">Pricing Review</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:33%"></div>
+            </div>
+            <div class="pipeline-count">8</div>
+          </div>
+
+          <div class="pipeline-stage">
+            <div class="pipeline-label">Closed-Won</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:21%"></div>
+            </div>
+            <div class="pipeline-count">5</div>
+          </div>
+
+          <div class="pipeline-stage">
+            <div class="pipeline-label">Expanded</div>
+            <div class="pipeline-track">
+              <div class="pipeline-fill" style="width:8%"></div>
+            </div>
+            <div class="pipeline-count">2</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="background:rgba(0,180,255,0.1); border:1px solid rgba(0,180,255,0.2); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; color:#00b4ff;">Waste Services Active</div>
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; color:rgba(255,255,255,0.5);">Construction Q3</div>
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; color:rgba(255,255,255,0.5);">Field Svcs Q4</div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<hr class="divider">
+<!-- ===== 12-MONTH OUTCOMES ===== -->
+<section class="outcomes-section" id="outcomes" role="region" aria-labelledby="outcomes-title">
+  <div class="outcomes-inner">
+    <div class="outcomes-header">
+      <div class="section-label outcomes-label" style="justify-content:center;">
+        <span class="dot" aria-hidden="true"></span>
+        12-Month Outcomes
+      </div>
+      <h2 class="outcomes-title" id="outcomes-title">From AI Platform to Vertical Market Leader</h2>
+      <p class="outcomes-subtitle">Three measurable outcomes that prove Motive deserves a platform multiple at IPO — not just a fleet telematics valuation.</p>
+    </div>
 
-<div class="section">
-  <div class="outcomes">
-    <h2>12-Month Outcomes</h2>
-    <ul>
-      <li><strong>Vertical AI product in market for 2 of 3 target verticals (construction + waste services)</strong> — with design-partner cohorts converted to paying customers, vertical-specific pricing validated, and a documented launch playbook ready to replicate for field services in month 13.</li>
-      <li><strong>CV-to-commercial translation process institutionalized</strong> — every AI model in the roadmap has a corresponding commercial PRD with operator pain, cost-avoided quantification, and willingness-to-pay signal before engineering resources are committed at scale.</li>
-      <li><strong>New AI product lines contributing measurable ARR expansion</strong> — targeting $25–40M in incremental ARR from net-new Safety & AI product lines within 12 months, establishing the product category proof needed to support a platform revenue multiple at IPO.</li>
-    </ul>
+    <ol class="outcomes-list" role="list">
+      <li class="outcome-item">
+        <div class="outcome-number" aria-hidden="true">01</div>
+        <div class="outcome-content">
+          <div class="outcome-title">Ship two net-new vertical AI products with standalone pricing and validated commercial traction</div>
+          <p class="outcome-description">
+            Waste services and construction become the first proof points that Motive can go beyond horizontal fleet tooling. Each product ships with usage-based pricing, a dedicated sales motion, and ≥15 reference customers in the target vertical — creating the ARR diversification narrative the S-1 roadshow requires. Success means at least $8M in new ARR attributable to vertical-specific modules by month 12.
+          </p>
+          <span class="outcome-tag">Revenue Impact</span>
+        </div>
+      </li>
+
+      <li class="outcome-item">
+        <div class="outcome-number" aria-hidden="true">02</div>
+        <div class="outcome-content">
+          <div class="outcome-title">Establish a repeatable 0-to-1 playbook codified well enough to hand off to the next PM hire</div>
+          <p class="outcome-description">
+            The real leverage isn't one great product launch — it's documenting the process so the third, fourth, and fifth vertical launches run faster with less executive involvement. A documented playbook covering vertical discovery, AI requirements definition, false-positive tolerance frameworks, pricing architecture, and 60-day GTM pilots reduces time-to-launch for subsequent verticals by 35% and allows the product org to scale without rebuilding tribal knowledge each cycle.
+          </p>
+          <span class="outcome-tag">Organizational Leverage</span>
+        </div>
+      </li>
+
+      <li class="outcome-item">
+        <div class="outcome-number" aria-hidden="true">03</div>
+        <div class="outcome-content">
+          <div class="outcome-title">Reframe Motive's competitive moat from "best ELD + dashcam" to "only AI platform purpose-built for the physical economy"</div>
+          <p class="outcome-description">
+            Samsara wins on breadth and brand in horizontal fleet. Motive wins by going deeper into the workflows that matter most in each vertical — achieving 85%+ satisfaction scores among waste and construction operators who find that generic fleet tools don't understand their regulatory environment, safety culture, or dispatch logic. That depth creates switching costs no competitor can replicate quickly, and gives the Kleiner Perkins narrative a defensible answer to "why not Samsara?"
+          </p>
+          <span class="outcome-tag">Competitive Positioning</span>
+        </div>
+      </li>
+    </ol>
   </div>
-</div>
+</section>
 
-<footer>
-  Product concept by Satish Subramanian — <a href="mailto:satishdavesubramanian@gmail.com">satishdavesubramanian@gmail.com</a>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 3L4 7.5v9L12 21l8-4.5v-9L12 3zm0 2.3l5.8 3.2v6.4L12 18.7l-5.8-3.2V8.5L12 5.3z"/>
+        </svg>
+      </div>
+      <span class="footer-wordmark">Motive</span>
+    </div>
+
+    <p class="footer-credit">
+      Product concept by <strong style="color:rgba(255,255,255,0.7);">Satish Subramanian</strong> —
+      <a href="mailto:satishdavesubramanian@gmail.com">satishdavesubramanian@gmail.com</a>
+    </p>
+
+    <nav aria-label="Footer Social Media Menu">
+      <ul class="footer-social wp-block-navigation__container menu-footer-social-media-menu-container wp-block-navigation" role="list">
+        <li class="wp-block-navigation-item facebook wp-block-navigation-link">
+          <a class="wp-block-navigation-item__content" href="https://www.facebook.com/GoMotive.Inc" target="_blank" rel="noopener noreferrer" aria-label="Motive on Facebook">
+            <span class="wp-block-navigation-item__label">facebook</span>
+          </a>
+        </li>
+        <li class="wp-block-navigation-item linkedin wp-block-navigation-link">
+          <a class="wp-block-navigation-item__content" href="https://www.linkedin.com/company/motive-inc/" target="_blank" rel="noopener noreferrer" aria-label="Motive on LinkedIn">
+            <span class="wp-block-navigation-item__label">linkedin</span>
+          </a>
+        </li>
+        <li class="wp-block-navigation-item twitter wp-block-navigation-link">
+          <a class="wp-block-navigation-item__content" href="https://twitter.com/Motive_inc" target="_blank" rel="noopener noreferrer" aria-label="Motive on Twitter">
+            <span class="wp-block-navigation-item__label">twitter</span>
+          </a>
+        </li>
+        <li class="wp-block-navigation-item instagram wp-block-navigation-link">
+          <a class="wp-block-navigation-item__content" href="https://www.instagram.com/motive_hq/" target="_blank" rel="noopener noreferrer" aria-label="Motive on Instagram">
+            <span class="wp-block-navigation-item__label">instagram</span>
+          </a>
+        </li>
+        <li class="wp-block-navigation-item youtube wp-block-navigation-link">
+          <a class="wp-block-navigation-item__content" href="https://www.youtube.com/channel/UCZGOt1TQWnO3QANO-sitn-w" target="_blank" rel="noopener noreferrer" aria-label="Motive on YouTube">
+            <span class="wp-block-navigation-item__label">youtube</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="footer-divider" role="separator"></div>
+
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">
+      This is an independent product concept created as part of a strategic design exercise. It is not an official Motive product, roadmap item, or company communication. Motive® and all associated trademarks are property of Motive Technologies, Inc.
+    </p>
+  </div>
 </footer>
 
 </body>
